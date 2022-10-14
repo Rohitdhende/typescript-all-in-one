@@ -49,7 +49,7 @@ export const Navbar = ({ activeTab, activeTabFun }: NavbarProps) => {
           justifyContent: "space-between",
         }}
       >
-        {["TodoList", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["TodoList", "Project2", "Project3", "Project4"].map((text, index) => (
           <ListItem
             className={activeTab === text ? "active" : ""}
             key={text}
