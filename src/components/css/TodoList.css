@@ -1,0 +1,23 @@
+.todo-list-parent{
+   width: 100%;
+}
+.note-parent{
+   margin: 0.5rem;
+}
+.strike{
+   text-decoration: line-through;
+   color: pink;
+}
+
+@media only screen and (max-width: 480px){
+   .todo-list-parent{
+      width: 100%;
+   }
+}
+
+@media only screen and (min-width: 481px){
+   .todo-list-parent{
+      width: 400px;
+   }
+}
+
