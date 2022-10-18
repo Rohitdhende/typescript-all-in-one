@@ -94,6 +94,11 @@ const TodoList = ({ deleteNote, updateNote }: NewNoteProps) => {
   const [error, setError] = useState(false);
 
   const onUpdateNote = useCallback(() => {
+    const handleCardCloseModal = () => {
+      setOpenCard(false);
+      setEditMode(false);
+      setEditNote(selectedNote);
+    };
     if (editNote === "") {
       setError(true);
       setErrorMessage("Please enter some note");
