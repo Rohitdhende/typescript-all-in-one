@@ -43,12 +43,33 @@ const Todo = ({ addNote }: NewNoteProps) => {
         justifyContent: "center",
         flexDirection: "row",
         alignItems: "center",
-        width: "100%",
+        width: {
+          xl: "500px",
+          lg: "500px",
+          md: "500px",
+          sm: "500px",
+          xs: "100%",
+        },
         display: "flex",
+        padding: "1rem",
+        top: "0",
+        background: "white",
+        boxShadow: "0 5px 4px -6px black",
+        position: "fixed",
+        zIndex: 2,
       }}
     >
       <TextField
         error={error}
+        sx={{
+          width: {
+            xl: "300px",
+            lg: "300px",
+            md: "300px",
+            sm: "300px",
+            xs: "100%",
+          },
+        }}
         id="standard-input-note"
         label="Add Note"
         variant="standard"
@@ -56,11 +77,17 @@ const Todo = ({ addNote }: NewNoteProps) => {
         value={note}
         helperText={error ? errorMessage : ""}
         onChange={updateNote}
+        onBlur={(e) => {
+          if (e.target.value === "" || e.target.value) {
+            setError(false);
+          }
+        }}
         color="success"
+        onKeyPress={(e) => e.key === "Enter" && onAddNoteClick()}
       />
       <AddCircleIcon
         color="success"
-        sx={{ fontSize: "1.5rem", cursor: "pointer"}}
+        sx={{ fontSize: "1.5rem", cursor: "pointer" }}
         onClick={onAddNoteClick}
       />
     </Container>

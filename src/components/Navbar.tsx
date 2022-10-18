@@ -61,8 +61,12 @@ export const Navbar = ({ activeTab, activeTabFun }: NavbarProps) => {
                 handleClick(text);
               }}
             >
-              <ListItemIcon >
-                {index % 2 === 0 ? <InboxIcon className={activeTab === text ? "active" : ""}/> : <MailIcon className={activeTab === text ? "active" : ""}/>}
+              <ListItemIcon>
+                {index % 2 === 0 ? (
+                  <InboxIcon className={activeTab === text ? "active" : ""} />
+                ) : (
+                  <MailIcon className={activeTab === text ? "active" : ""} />
+                )}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -76,9 +80,6 @@ export const Navbar = ({ activeTab, activeTabFun }: NavbarProps) => {
       <Box
         sx={{
           "& > :not(style)": { m: 1 },
-          position: "absolute",
-          bottom: "1rem",
-          left: "1rem",
         }}
       >
         <Fab color="success" aria-label="add" onClick={toggleDrawer(true)}>

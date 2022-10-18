@@ -11,9 +11,7 @@ function App() {
         activeTab={activeTab}
         activeTabFun={(value) => setActiveTab(value)}
       />
-      {activeTab === "TodoList" && (
-        <TodoWrapper/>
-      )}
+      {activeTab === "TodoList" && <TodoWrapper />}
     </div>
   );
 }

@@ -2,11 +2,14 @@ export interface NotesState {
   notes: string[];
 }
 export interface StrikeState {
-  notes: string[];
+  strikeState: string[];
 }
 
-const initialState = {
+const initialNoteState = {
   notes: [],
+};
+const initialStrikeState = {
+  strikeState: [],
 };
 interface AddNote {
   type: "ADD_NOTE";
@@ -17,45 +20,62 @@ interface DeleteNote {
   type: "DELETE_NOTE";
   payload: string;
 }
+interface UpdateNote {
+  type: "UPDATE_NOTE";
+  payload: {
+    selectedNote: string;
+    updatedNote: string;
+  };
+}
 
 interface StrikeNote {
   type: "STRIKE_NOTE";
   payload: string;
 }
 
-type Actions = AddNote | DeleteNote | StrikeNote;
+type Actions = AddNote | DeleteNote | UpdateNote;
 
 export const noteReducers = (
-  state: NotesState = initialState,
+  notes: NotesState = initialNoteState,
   action: Actions
 ) => {
   switch (action.type) {
     case "ADD_NOTE": {
-      return { ...state, notes: [...state.notes, action.payload] };
+      return { ...notes, notes: [...notes.notes, action.payload] };
     }
     case "DELETE_NOTE": {
-      let newArray = state.notes.slice();
+      let newArray = notes.notes.slice();
       let noteIndex = newArray.indexOf(action.payload);
       if (noteIndex !== -1) {
         newArray.splice(noteIndex, 1);
       }
-      return { ...state, notes: newArray };
-    }
 
+      return { ...notes, notes: newArray };
+    }
+    case "UPDATE_NOTE": {
+      let newArray = notes.notes.slice();
+      let noteIndex = newArray.indexOf(action.payload.selectedNote);
+
+      if (noteIndex !== -1) {
+        newArray[noteIndex] = action.payload.updatedNote;
+      }
+
+      return { ...notes, notes: newArray };
+    }
     default:
-      return state;
+      return notes;
   }
 };
 
 export const strikeReducer = (
-  strikeState: StrikeState = initialState,
+  state: StrikeState = initialStrikeState,
   action: StrikeNote
 ) => {
   switch (action.type) {
     case "STRIKE_NOTE": {
-      return { ...strikeState, notes: [...strikeState.notes, action.payload] };
+      return { ...state, notes: [...state.strikeState, action.payload] };
     }
     default:
-      return strikeState;
+      return state;
   }
 };
